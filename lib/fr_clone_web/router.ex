@@ -17,6 +17,7 @@ defmodule FrCloneWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    resources "/costing_requests", CostingRequestController
   end
 
   # Other scopes may use custom stacks.

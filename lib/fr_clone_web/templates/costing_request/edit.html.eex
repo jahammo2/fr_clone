@@ -1,0 +1,5 @@
+<h1>Edit Costing request</h1>
+
+<%= render "form.html", Map.put(assigns, :action, Routes.costing_request_path(@conn, :update, @costing_request)) %>
+
+<span><%= link "Back", to: Routes.costing_request_path(@conn, :index) %></span>

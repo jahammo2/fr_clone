@@ -1,0 +1,18 @@
+<h1>Show Costing request</h1>
+
+<ul>
+
+  <li>
+    <strong>Box file location:</strong>
+    <%= @costing_request.box_file_location %>
+  </li>
+
+  <li>
+    <strong>Opportunity:</strong>
+    <%= @costing_request.opportunity_id %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: Routes.costing_request_path(@conn, :edit, @costing_request) %></span>
+<span><%= link "Back", to: Routes.costing_request_path(@conn, :index) %></span>
