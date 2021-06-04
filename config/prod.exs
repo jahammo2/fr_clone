@@ -19,7 +19,7 @@ config :logger, level: :info
 config :fr_clone, FrCloneWeb.Endpoint,
   http: [port: {:system, "PORT"}],
   url: [scheme: "https", host: "fr-clone.herokuapp.com", port: 443],
-  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]]
 
 # ## SSL Support
 #
