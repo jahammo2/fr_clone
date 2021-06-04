@@ -16,6 +16,10 @@ config :fr_clone, FrCloneWeb.Endpoint,
 # Do not print debug messages in production
 config :logger, level: :info
 
+http: [port: {:system, "PORT"}],
+url: [scheme: "https", host: "fr-clone.herokuapp.com", port: 443],
+force_ssl: [rewrite_on: [:x_forwarded_proto]],
+
 # ## SSL Support
 #
 # To get SSL working, you will need to add the `https` key
