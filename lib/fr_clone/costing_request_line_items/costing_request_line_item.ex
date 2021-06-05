@@ -7,6 +7,8 @@ defmodule FrClone.CostingRequestLineItems.CostingRequestLineItem do
     field :units, Ecto.Enum, values: [:in, :mm]
     field :costing_request_id, :id
 
+    # belongs_to(:costing_request, CostingRequest)
+
     timestamps()
   end
 
