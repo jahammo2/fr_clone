@@ -6,6 +6,7 @@ const srcDir = path.resolve(__dirname, './src');
 module.exports = (env, options) => {
   const devMode = options.mode !== 'production';
 
+  console.log(process.env);
   return {
     entry: './src/index.jsx',
     devServer: {
