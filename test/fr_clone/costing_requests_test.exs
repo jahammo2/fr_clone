@@ -6,8 +6,14 @@ defmodule FrClone.CostingRequestsTest do
   describe "costing_requests" do
     alias FrClone.CostingRequests.CostingRequest
 
-    @valid_attrs %{box_file_location: "some box_file_location", opportunity_id: "some opportunity_id"}
-    @update_attrs %{box_file_location: "some updated box_file_location", opportunity_id: "some updated opportunity_id"}
+    @valid_attrs %{
+      box_file_location: "some box_file_location",
+      opportunity_id: "some opportunity_id"
+    }
+    @update_attrs %{
+      box_file_location: "some updated box_file_location",
+      opportunity_id: "some updated opportunity_id"
+    }
     @invalid_attrs %{box_file_location: nil, opportunity_id: nil}
 
     def costing_request_fixture(attrs \\ %{}) do
@@ -30,7 +36,9 @@ defmodule FrClone.CostingRequestsTest do
     end
 
     test "create_costing_request/1 with valid data creates a costing_request" do
-      assert {:ok, %CostingRequest{} = costing_request} = CostingRequests.create_costing_request(@valid_attrs)
+      assert {:ok, %CostingRequest{} = costing_request} =
+               CostingRequests.create_costing_request(@valid_attrs)
+
       assert costing_request.box_file_location == "some box_file_location"
       assert costing_request.opportunity_id == "some opportunity_id"
     end
@@ -41,21 +49,30 @@ defmodule FrClone.CostingRequestsTest do
 
     test "update_costing_request/2 with valid data updates the costing_request" do
       costing_request = costing_request_fixture()
-      assert {:ok, %CostingRequest{} = costing_request} = CostingRequests.update_costing_request(costing_request, @update_attrs)
+
+      assert {:ok, %CostingRequest{} = costing_request} =
+               CostingRequests.update_costing_request(costing_request, @update_attrs)
+
       assert costing_request.box_file_location == "some updated box_file_location"
       assert costing_request.opportunity_id == "some updated opportunity_id"
     end
 
     test "update_costing_request/2 with invalid data returns error changeset" do
       costing_request = costing_request_fixture()
-      assert {:error, %Ecto.Changeset{}} = CostingRequests.update_costing_request(costing_request, @invalid_attrs)
+
+      assert {:error, %Ecto.Changeset{}} =
+               CostingRequests.update_costing_request(costing_request, @invalid_attrs)
+
       assert costing_request == CostingRequests.get_costing_request!(costing_request.id)
     end
 
     test "delete_costing_request/1 deletes the costing_request" do
       costing_request = costing_request_fixture()
       assert {:ok, %CostingRequest{}} = CostingRequests.delete_costing_request(costing_request)
-      assert_raise Ecto.NoResultsError, fn -> CostingRequests.get_costing_request!(costing_request.id) end
+
+      assert_raise Ecto.NoResultsError, fn ->
+        CostingRequests.get_costing_request!(costing_request.id)
+      end
     end
 
     test "change_costing_request/1 returns a costing_request changeset" do

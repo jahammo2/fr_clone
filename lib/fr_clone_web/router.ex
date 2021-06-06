@@ -17,7 +17,10 @@ defmodule FrCloneWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
-    resources "/costing_requests", CostingRequestController
+
+    resources "/costing_requests", CostingRequestController do
+      post "/costing_request_line_item", CostingRequestController, :add_costing_request_line_item
+    end
   end
 
   # Other scopes may use custom stacks.

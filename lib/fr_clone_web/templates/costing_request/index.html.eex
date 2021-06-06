@@ -5,6 +5,7 @@
     <tr>
       <th>Box file location</th>
       <th>Opportunity</th>
+      <th>CRLI count</th>
 
       <th></th>
     </tr>
@@ -14,6 +15,7 @@
     <tr>
       <td><%= costing_request.box_file_location %></td>
       <td><%= costing_request.opportunity_id %></td>
+      <td><%= costing_request.crli_count %></td>
 
       <td>
         <span><%= link "Show", to: Routes.costing_request_path(@conn, :show, costing_request) %></span>

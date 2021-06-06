@@ -14,5 +14,8 @@
 
 </ul>
 
+<%= render "costing_request_line_item_form.html", costing_request: @costing_request, changeset: @changeset, action: Routes.costing_request_costing_request_path(@conn, :add_costing_request_line_item, @costing_request) %>
+<%= render "costing_request_line_items.html", costing_request_line_items: @costing_request.costing_request_line_items %>
+
 <span><%= link "Edit", to: Routes.costing_request_path(@conn, :edit, @costing_request) %></span>
 <span><%= link "Back", to: Routes.costing_request_path(@conn, :index) %></span>

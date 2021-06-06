@@ -67,7 +67,10 @@ defmodule FrClone.CostingRequestLineItems do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_costing_request_line_item(%CostingRequestLineItem{} = costing_request_line_item, attrs) do
+  def update_costing_request_line_item(
+        %CostingRequestLineItem{} = costing_request_line_item,
+        attrs
+      ) do
     costing_request_line_item
     |> CostingRequestLineItem.changeset(attrs)
     |> Repo.update()
@@ -98,7 +101,10 @@ defmodule FrClone.CostingRequestLineItems do
       %Ecto.Changeset{data: %CostingRequestLineItem{}}
 
   """
-  def change_costing_request_line_item(%CostingRequestLineItem{} = costing_request_line_item, attrs \\ %{}) do
+  def change_costing_request_line_item(
+        %CostingRequestLineItem{} = costing_request_line_item,
+        attrs \\ %{}
+      ) do
     CostingRequestLineItem.changeset(costing_request_line_item, attrs)
   end
 end

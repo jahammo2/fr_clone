@@ -1,0 +1,15 @@
+<%= form_for @changeset, @action, fn f -> %>
+  <div class="form-group">
+   <label>Units</label>
+   <%= text_input f, :units, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>Notes</label>
+    <%= textarea f, :notes, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= submit "Add costing request line item", class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,53 +1,64 @@
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
-const glob = require('glob');
-const HardSourceWebpackPlugin = require('hard-source-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+
+const srcDir = path.resolve(__dirname, './src');
 
 module.exports = (env, options) => {
   const devMode = options.mode !== 'production';
 
   return {
-    optimization: {
-      minimizer: [
-        new TerserPlugin({ cache: true, parallel: true, sourceMap: devMode }),
-        new OptimizeCSSAssetsPlugin({})
-      ]
+    entry: './src/index.jsx',
+    devServer: {
+      hot: true,
+      liveReload: true,
     },
-    entry: {
-      'app': glob.sync('./vendor/**/*.js').concat(['./js/app.js'])
-    },
-    output: {
-      filename: '[name].js',
-      path: path.resolve(__dirname, '../priv/static/js'),
-      publicPath: '/js/'
-    },
-    devtool: devMode ? 'eval-cheap-module-source-map' : undefined,
+    devtool: devMode ? 'inline-source-map' : undefined,
+    mode: devMode ? 'development' : 'production',
     module: {
       rules: [
         {
-          test: /\.js$/,
+          test: /\.scss$/,
           exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader'
-          }
-        },
-        {
-          test: /\.[s]?css$/,
           use: [
-            MiniCssExtractPlugin.loader,
+            'style-loader',
             'css-loader',
             'sass-loader',
-          ],
+            'fast-sass-loader',
+            {
+              loader  : 'sass-resources-loader',
+              options : {
+                resources: 'src/styles/globally-available.scss',
+              },
+            },
+          ]
+        },
+        {
+          test: /\.css$/,
+          use: [{ loader: 'style-loader' }, { loader: 'css-loader' }]
+        },
+        {
+          test: /\.js|\.jsx$/,
+          include: srcDir,
+          exclude: /node_modules/,
+          use: {
+            loader: 'babel-loader',
+          }
         }
       ]
     },
+    output: {
+      path: path.resolve(__dirname, '../priv/static/js'),
+      filename: 'bundle.js',
+    },
     plugins: [
-      new MiniCssExtractPlugin({ filename: '../css/app.css' }),
-      new CopyWebpackPlugin([{ from: 'static/', to: '../' }])
-    ]
-    .concat(devMode ? [new HardSourceWebpackPlugin()] : [])
+      new Dotenv({ path: '../.env' })
+    ],
+    resolve: {
+      alias: {
+        src : srcDir,
+      },
+      extensions: ['*', '.js', '.jsx', '.css', '.scss'],
+    },
+    target: 'web',
   }
 };

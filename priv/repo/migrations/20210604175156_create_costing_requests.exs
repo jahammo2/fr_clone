@@ -8,6 +8,5 @@ defmodule FrClone.Repo.Migrations.CreateCostingRequests do
 
       timestamps()
     end
-
   end
 end
