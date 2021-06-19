@@ -6,9 +6,8 @@ const srcDir = path.resolve(__dirname, './src');
 module.exports = (env, options) => {
   const devMode = options.mode !== 'production';
 
-  console.log(process.env);
   return {
-    entry: './src/index.jsx',
+    entry: srcDir + '/index.jsx',
     devServer: {
       hot: true,
       liveReload: true,
@@ -28,7 +27,7 @@ module.exports = (env, options) => {
             {
               loader  : 'sass-resources-loader',
               options : {
-                resources: 'src/styles/globally-available.scss',
+                resources: srcDir + '/styles/globally-available.scss',
               },
             },
           ]
@@ -40,7 +39,6 @@ module.exports = (env, options) => {
         {
           test: /\.js|\.jsx$/,
           include: srcDir,
-          exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
           }
@@ -52,7 +50,7 @@ module.exports = (env, options) => {
       filename: 'bundle.js',
     },
     plugins: [
-      new Dotenv({ path: '../.env', systemvars: true })
+      new Dotenv({ path: './.env', systemvars: true })
     ],
     resolve: {
       alias: {

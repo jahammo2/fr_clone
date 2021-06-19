@@ -26,7 +26,7 @@ config :fr_clone, FrCloneWeb.Endpoint,
       "--mode",
       "development",
       "--watch",
-      cd: Path.expand("../assets", __DIR__)
+      cd: Path.expand("../", __DIR__)
     ]
   ]
 

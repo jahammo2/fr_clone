@@ -5,7 +5,7 @@ import styles from './styles.module.scss';
 function Dashboard() {
   return (
     <div className={ styles.Root }>
-      <h2>Home</h2>
+      <h2>Homies</h2>
       <h3>Welcome back.</h3>
     </div>
   );
