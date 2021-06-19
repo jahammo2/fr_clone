@@ -5,21 +5,21 @@ import INITIAL_STATE from './initialState';
 
 export default function (state = INITIAL_STATE, { payload, type }) {
   switch (type) {
-    case actionTypes.FOO__FIND_FAILURE:
+    case actionTypes.COSTING_REQUEST__GET_ALL_FAILURE:
       return state.withMutations(map => {
         map.set('errors', null);
         map.set('isActive', false);
       });
 
-    case actionTypes.FOO__FIND_START:
+    case actionTypes.COSTING_REQUEST__GET_ALL_START:
       return state.set('isActive', true);
 
-    case actionTypes.FOO__FIND_SUCCESS:
+    case actionTypes.COSTING_REQUEST__GET_ALL_SUCCESS:
       return state.withMutations(map => {
-        const { foo } = payload;
+        const { costingRequests } = payload;
 
         map.set('isActive', false);
-        map.setIn(['loaded', 'foos', foo.id], Immutable.fromJS(foo));
+        map.setIn(['loaded', 'costingRequests'], Immutable.fromJS(costingRequests));
       });
 
     default:

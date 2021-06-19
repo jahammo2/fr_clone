@@ -12,7 +12,8 @@
     "lint:styles": "stylelint 'assets/src/**/*.{css,scss}'",
     "lint:styles-fix": "stylelint --fix 'assets/src/**/*.{css,scss}'",
     "start": "webpack serve --config assets/webpack.config.js",
-    "test": "jest --config support/jest/base.js",
+    "test": "jest --config assets/support/jest/base.js",
+    "test:watch": "jest --config assets/support/jest/base.js --watchAll",
     "watch": "webpack --mode development --watch --config assets/webpack.config.js"
   },
   "dependencies": {

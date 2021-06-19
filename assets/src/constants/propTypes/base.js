@@ -9,12 +9,14 @@ export const errorMessages = ImmutablePropTypes.list;
 export const errors = ImmutablePropTypes.mapOf(PropTypes.array);
 export const floatRight = PropTypes.bool;
 
-export const foo = ImmutablePropTypes.contains({
-  bar : PropTypes.string,
-  id  : PropTypes.string,
+export const costingRequest = ImmutablePropTypes.contains({
+  boxFileLocation : PropTypes.string.isRequired,
+  crliCount       : PropTypes.number,
+  id              : PropTypes.number.isRequired,
+  opportunityId   : PropTypes.string.isRequired,
 });
 
-export const foos = ImmutablePropTypes.listOf(foo);
+export const costingRequests = ImmutablePropTypes.listOf(costingRequest);
 export const handleClick = PropTypes.func;
 
 export const history = PropTypes.shape({

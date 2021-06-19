@@ -1,7 +1,7 @@
 import keyMirror from 'keymirror';
 
 export default keyMirror({
-  FOO__FIND_FAILURE : null,
-  FOO__FIND_START   : null,
-  FOO__FIND_SUCCESS : null,
+  COSTING_REQUEST__GET_ALL_FAILURE : null,
+  COSTING_REQUEST__GET_ALL_START   : null,
+  COSTING_REQUEST__GET_ALL_SUCCESS : null,
 });

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import foos from './foos';
+import costingRequests from './costingRequests';
 
 export default combineReducers({
-  foos,
+  costingRequests,
 });

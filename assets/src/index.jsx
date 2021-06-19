@@ -14,7 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   const el = document.createElement('div');
   el.setAttribute('id', 'root');
 
-  console.log('index', storeService.getStore());
   ReactDOM.render(
     <Provider store={ storeService.getStore() }>
       <PersistGate loading={ null } persistor={ storeService.getPersistor() }>

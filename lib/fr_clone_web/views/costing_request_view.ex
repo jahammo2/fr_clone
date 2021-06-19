@@ -3,7 +3,7 @@ defmodule FrCloneWeb.CostingRequestView do
   require Logger
 
   def render("index.json", %{costing_requests: costing_requests}) do
-    %{data: render_many(costing_requests, FrCloneWeb.CostingRequestView, "costing_request.json")}
+    %{costing_requests: render_many(costing_requests, FrCloneWeb.CostingRequestView, "costing_request.json")}
   end
 
   def render("costing_request.json", %{costing_request: costing_request}) do

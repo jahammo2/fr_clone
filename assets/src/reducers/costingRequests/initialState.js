@@ -1,6 +1,6 @@
 import Immutable from 'immutable';
 
 export default Immutable.fromJS({
-  loaded   : { foos : {} },
+  loaded   : { costingRequests : [] },
   isActive : false,
 });
