@@ -49,9 +49,9 @@ module.exports = (env, options) => {
       path: path.resolve(__dirname, '../priv/static/js'),
       filename: 'bundle.js',
     },
-    plugins: [
-      devMode && new Dotenv({ path: './.env', systemvars: true })
-    ],
+    plugins: devMode
+      ? [ new Dotenv({ path: './.env', systemvars: true }) ]
+      : [],
     resolve: {
       alias: {
         src : srcDir,
