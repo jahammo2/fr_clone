@@ -1,19 +1,8 @@
-import classNames from 'classnames/bind';
 import React from 'react';
 
 import * as basePropTypes from 'src/constants/propTypes/base';
 
 import styles from './styles.module.scss';
-
-const cx = classNames.bind(styles);
-
-function getButtonClassNames({ floatRight, isSecondary }) {
-  return cx({
-    Button : true,
-    floatRight,
-    isSecondary,
-  });
-}
 
 function ButtonSubmit(props) {
   const {
@@ -26,10 +15,10 @@ function ButtonSubmit(props) {
   return (
     <div className={ styles.Root }>
       <input
-        className={ getButtonClassNames(props) }
+        className={ styles.Button }
         disabled={ disabled }
         onClick={ handleClick }
-        type={ type }
+        type="submit"
         value={ value }
       />
     </div>

@@ -66,7 +66,6 @@ defmodule FrCloneWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import FrCloneWeb.ErrorHelpers
       import FrCloneWeb.Gettext
       alias FrCloneWeb.Router.Helpers, as: Routes
     end

@@ -21,3 +21,24 @@ export function getAll() { // eslint-disable-line import/prefer-default-export
       });
   };
 }
+
+export function create() { // eslint-disable-line import/prefer-default-export
+  return dispatch => {
+    dispatch({ type : actionTypes.COSTING_REQUEST__CREATE_START });
+
+    return costingRequestsService
+      .create()
+      .then(({ costingRequest }) => {
+        dispatch({
+          type    : actionTypes.COSTING_REQUEST__CREATE_SUCCESS,
+          payload : { costingRequest },
+        });
+      })
+      .catch(error => {
+        dispatch({
+          type    : actionTypes.COSTING_REQUEST__CREATE_FAILURE,
+          payload : { error },
+        });
+      });
+  };
+}

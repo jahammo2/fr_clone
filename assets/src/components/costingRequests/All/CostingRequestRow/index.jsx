@@ -9,8 +9,8 @@ function CostingRequestRow(props) {
 
   return (
     <li className={ styles.Root }>
-      <div>{ costingRequest.get('id') }</div>
-      <div>{ costingRequest.get('opportunityId') }</div>
+      <div className={ styles.Value }>{ costingRequest.get('id') }</div>
+      <div className={ styles.Value }>{ costingRequest.get('opportunityId') }</div>
     </li>
   );
 }

@@ -9,26 +9,23 @@ defmodule FrCloneWeb.CostingRequestController do
   alias FrClone.CostingRequestLineItems.CostingRequestLineItem
 
   def index(conn, _params) do
-    costing_requests = CostingRequests.list_costing_requests
+    costing_requests = CostingRequests.list_costing_requests()
     render(conn, "index.json", costing_requests: costing_requests)
-  end
-
-  def new(conn, _params) do
-    changeset = CostingRequests.change_costing_request(%CostingRequest{})
-    render(conn, "new.html", changeset: changeset)
   end
 
   def create(conn, %{"costing_request" => costing_request_params}) do
     case CostingRequests.create_costing_request(costing_request_params) do
       {:ok, costing_request} ->
-        conn
-        |> put_flash(:info, "Costing request created successfully.")
-        |> redirect(to: Routes.costing_request_path(conn, :show, costing_request))
+        render(conn, "costing_request.json", costing_request: costing_request)
 
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        conn
+        |> put_status(:unprocessable_entity)
+        |> render("error.json", changeset: changeset)
     end
   end
+
+  # ----------------
 
   def show(conn, %{"id" => id}) do
     costing_request =
@@ -37,12 +34,6 @@ defmodule FrCloneWeb.CostingRequestController do
 
     changeset = CostingRequestLineItem.changeset(%CostingRequestLineItem{}, %{})
     render(conn, "show.html", costing_request: costing_request, changeset: changeset)
-  end
-
-  def edit(conn, %{"id" => id}) do
-    costing_request = CostingRequests.get_costing_request!(id)
-    changeset = CostingRequests.change_costing_request(costing_request)
-    render(conn, "edit.html", costing_request: costing_request, changeset: changeset)
   end
 
   def update(conn, %{"id" => id, "costing_request" => costing_request_params}) do
@@ -72,10 +63,9 @@ defmodule FrCloneWeb.CostingRequestController do
         "costing_request_line_item" => crli_params,
         "costing_request_id" => costing_request_id
       }) do
-
     costing_request =
       costing_request_id
-      |> CostingRequests.get_costing_request!
+      |> CostingRequests.get_costing_request!()
       |> Repo.preload([:costing_request_line_items])
 
     case CostingRequests.add_costing_request_line_item(costing_request_id, crli_params) do

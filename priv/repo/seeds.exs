@@ -1,11 +1,1 @@
-# Script for populating the database. You can run it as:
-#
-#     mix run priv/repo/seeds.exs
-#
-# Inside the script, you can read and write to any of your
-# repositories directly:
-#
-#     FrClone.Repo.insert!(%FrClone.SomeSchema{})
-#
-# We recommend using the bang functions (`insert!`, `update!`
-# and so on) as they will fail if something goes wrong.
+1..10 |> Enum.each(fn _ -> FrClone.Seeds.insert_costing_requests() end)

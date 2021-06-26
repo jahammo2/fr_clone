@@ -22,9 +22,6 @@ defmodule FrClone.CostingRequests do
   def list_costing_requests do
     Repo.all(CostingRequest)
     |> Repo.preload([:costing_request_line_items])
-    |> Enum.map(fn cr ->
-      Map.put(cr, :crli_count, CostingRequests.get_crli_count(cr))
-    end)
   end
 
   @doc """
@@ -56,9 +53,15 @@ defmodule FrClone.CostingRequests do
 
   """
   def create_costing_request(attrs \\ %{}) do
-    %CostingRequest{}
+    costing_request = %CostingRequest{}
     |> CostingRequest.changeset(attrs)
     |> Repo.insert()
+
+    case costing_request do
+      {:ok, costing_request} ->
+        {:ok, costing_request |> Repo.preload([:costing_request_line_items]) }
+      _ -> costing_request
+    end
   end
 
   @doc """
@@ -111,7 +114,7 @@ defmodule FrClone.CostingRequests do
   def add_costing_request_line_item(costing_request_id, crli_params) do
     crli_params
     |> Map.put("costing_request_id", costing_request_id)
-    |> CostingRequestLineItems.create_costing_request_line_item
+    |> CostingRequestLineItems.create_costing_request_line_item()
   end
 
   def get_crli_count(%CostingRequest{} = costing_request) do

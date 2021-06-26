@@ -1,21 +1,27 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import * as basePropTypes from 'src/constants/propTypes/base';
 import * as costingRequestsActionCreators from 'src/actions/costingRequests';
 
-import CostingRequestsAll from 'src/components/costingRequests/All';
+import CostingRequestsNew from 'src/components/costingRequests/New';
 
 function FunctionalCostingRequests(props) {
-  useEffect(() => props.actions.costingRequests.getAll(), []);
+  const handleSubmit = useCallback((values) => {
+    console.log('calling handleSubmit', values);
+  }, []);
 
-  return <CostingRequestsAll { ...props } />;
+  return (
+    <CostingRequestsNew
+      handleSubmit={ handleSubmit }
+      { ...props }
+    />
+  );
 }
 
 function mapStateToProps({ costingRequests }) {
   return {
-    costingRequests : costingRequests.getIn(['loaded', 'costingRequests']),
   };
 }
 
@@ -28,8 +34,7 @@ function mapDispatchToProps(dispatch) {
 }
 
 FunctionalCostingRequests.propTypes = {
-  actions         : basePropTypes.actions.isRequired,
-  costingRequests    : basePropTypes.costingRequests,
+  actions : basePropTypes.actions.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FunctionalCostingRequests);

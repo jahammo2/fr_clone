@@ -1,14 +1,21 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import CostingRequests from 'src/containers/costingRequests/All';
+import CostingRequestsAll from 'src/containers/costingRequests/All';
+import CostingRequestsNew from 'src/containers/costingRequests/New';
+import Header from 'src/components/navigation/Header';
 
 function Routes(props) {
   /* eslint-disable max-len */
   return (
-    <Switch>
-      <Route component={ CostingRequests } exact path={ ['/', '/costing-requests'] } />
-    </Switch>
+    <>
+      <Header />
+
+      <Switch>
+        <Route component={ CostingRequestsAll } exact path={ ['/', '/costing-requests'] } />
+        <Route component={ CostingRequestsNew } exact path="/costing-requests/new" />
+      </Switch>
+    </>
   );
   /* eslint-enable max-len */
 }
