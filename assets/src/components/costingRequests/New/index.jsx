@@ -1,5 +1,5 @@
 import React from 'react';
-import { useForm } from 'react-hook-form'
+import { useForm } from 'react-hook-form';
 
 import ButtonSubmit from 'src/components/buttons/ButtonSubmit';
 import TextField from 'src/components/fields/TextField';

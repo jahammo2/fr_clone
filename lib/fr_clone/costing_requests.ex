@@ -53,14 +53,17 @@ defmodule FrClone.CostingRequests do
 
   """
   def create_costing_request(attrs \\ %{}) do
-    costing_request = %CostingRequest{}
-    |> CostingRequest.changeset(attrs)
-    |> Repo.insert()
+    costing_request =
+      %CostingRequest{}
+      |> CostingRequest.changeset(attrs)
+      |> Repo.insert()
 
     case costing_request do
       {:ok, costing_request} ->
-        {:ok, costing_request |> Repo.preload([:costing_request_line_items]) }
-      _ -> costing_request
+        {:ok, costing_request |> Repo.preload([:costing_request_line_items])}
+
+      _ ->
+        costing_request
     end
   end
 

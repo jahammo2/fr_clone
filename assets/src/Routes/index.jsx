@@ -5,7 +5,7 @@ import CostingRequestsAll from 'src/containers/costingRequests/All';
 import CostingRequestsNew from 'src/containers/costingRequests/New';
 import Header from 'src/components/navigation/Header';
 
-function Routes(props) {
+function Routes() {
   /* eslint-disable max-len */
   return (
     <>

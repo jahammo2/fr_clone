@@ -1,9 +1,5 @@
 import _ from 'lodash';
 
-export default function (data) {
-  return camelCase(data);
-}
-
 function camelCase(data) {
   const arr = Object.keys(data);
 
@@ -23,4 +19,8 @@ function camelCase(data) {
     accumulator[formattedKey] = value;
     return accumulator;
   }, {});
+}
+
+export default function (data) {
+  return camelCase(data);
 }

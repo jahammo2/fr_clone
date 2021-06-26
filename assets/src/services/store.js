@@ -21,7 +21,6 @@ class Store {
   }
 
   getStore() {
-    console.log('getStore');
     return this.store;
   }
 

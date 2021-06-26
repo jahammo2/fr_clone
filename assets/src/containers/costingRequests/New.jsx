@@ -1,6 +1,6 @@
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import React, { useCallback, useEffect } from 'react';
+import React, { useCallback } from 'react';
 
 import * as basePropTypes from 'src/constants/propTypes/base';
 import * as costingRequestsActionCreators from 'src/actions/costingRequests';
@@ -8,7 +8,7 @@ import * as costingRequestsActionCreators from 'src/actions/costingRequests';
 import CostingRequestsNew from 'src/components/costingRequests/New';
 
 function FunctionalCostingRequests(props) {
-  const handleSubmit = useCallback((values) => {
+  const handleSubmit = useCallback(values => {
     console.log('calling handleSubmit', values);
   }, []);
 
@@ -20,7 +20,7 @@ function FunctionalCostingRequests(props) {
   );
 }
 
-function mapStateToProps({ costingRequests }) {
+function mapStateToProps() {
   return {
   };
 }

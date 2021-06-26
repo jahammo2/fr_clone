@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import React, { useEffect } from 'react';
 
 import * as basePropTypes from 'src/constants/propTypes/base';
+import * as costingRequestPropTypes from 'src/constants/propTypes/costingRequest';
 import * as costingRequestsActionCreators from 'src/actions/costingRequests';
 
 import CostingRequestsAll from 'src/components/costingRequests/All';
@@ -29,7 +30,7 @@ function mapDispatchToProps(dispatch) {
 
 FunctionalCostingRequests.propTypes = {
   actions         : basePropTypes.actions.isRequired,
-  costingRequests    : basePropTypes.costingRequests,
+  costingRequests : costingRequestPropTypes.costingRequests.isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(FunctionalCostingRequests);

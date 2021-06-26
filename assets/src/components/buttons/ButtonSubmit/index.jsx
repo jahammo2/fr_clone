@@ -7,8 +7,6 @@ import styles from './styles.module.scss';
 function ButtonSubmit(props) {
   const {
     disabled,
-    handleClick,
-    type,
     value,
   } = props;
 
@@ -17,7 +15,6 @@ function ButtonSubmit(props) {
       <input
         className={ styles.Button }
         disabled={ disabled }
-        onClick={ handleClick }
         type="submit"
         value={ value }
       />
@@ -27,10 +24,6 @@ function ButtonSubmit(props) {
 
 ButtonSubmit.propTypes = {
   disabled    : basePropTypes.disabled,
-  floatRight  : basePropTypes.floatRight,
-  handleClick : basePropTypes.handleClick,
-  isSecondary : basePropTypes.isSecondary,
-  type        : basePropTypes.type.isRequired,
   value       : basePropTypes.value.isRequired,
 };
 

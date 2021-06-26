@@ -8,15 +8,6 @@ export const disabled = PropTypes.bool;
 export const errorMessages = ImmutablePropTypes.list;
 export const errors = ImmutablePropTypes.mapOf(PropTypes.array);
 export const floatRight = PropTypes.bool;
-
-export const costingRequest = ImmutablePropTypes.contains({
-  boxFileLocation : PropTypes.string.isRequired,
-  crliCount       : PropTypes.number,
-  id              : PropTypes.number.isRequired,
-  opportunityId   : PropTypes.string.isRequired,
-});
-
-export const costingRequests = ImmutablePropTypes.listOf(costingRequest);
 export const handleClick = PropTypes.func;
 
 export const history = PropTypes.shape({

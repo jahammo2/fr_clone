@@ -1,14 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import * as basePropTypes from 'src/constants/propTypes/base';
-
 import styles from './styles.module.scss';
 
-function Header(props) {
-  const {
-  } = props;
-
+function Header() {
   return (
     <div className={ styles.Root }>
       <ul className={ styles.List }>
@@ -23,8 +18,5 @@ function Header(props) {
     </div>
   );
 }
-
-Header.propTypes = {
-};
 
 export default Header;

@@ -36,7 +36,7 @@ defmodule FrCloneWeb.CostingRequestControllerTest do
       conn =
         post(conn, Routes.costing_request_path(conn, :create), costing_request: @create_attrs)
 
-      assert %{ "id" => id} = json_response(conn, 200)
+      assert %{"id" => id} = json_response(conn, 200)
       refute is_nil(id)
     end
 
@@ -45,14 +45,14 @@ defmodule FrCloneWeb.CostingRequestControllerTest do
         post(conn, Routes.costing_request_path(conn, :create), costing_request: @invalid_attrs)
 
       assert json_response(conn, 422) == %{
-         "data" => %{
-           "code" => "validation_error",
-           "errors" => %{
-             "box_file_location" => ["can't be blank"],
-             "opportunity_id" => ["can't be blank"],
-           }
-         }
-       }
+               "data" => %{
+                 "code" => "validation_error",
+                 "errors" => %{
+                   "box_file_location" => ["can't be blank"],
+                   "opportunity_id" => ["can't be blank"]
+                 }
+               }
+             }
     end
   end
 

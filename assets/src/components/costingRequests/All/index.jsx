@@ -1,5 +1,7 @@
 import React from 'react';
 
+import * as costingRequestPropTypes from 'src/constants/propTypes/costingRequest';
+
 import CostingRequestRow from './CostingRequestRow';
 import styles from './styles.module.scss';
 
@@ -23,5 +25,9 @@ function CostingRequestsAll(props) {
     </div>
   );
 }
+
+CostingRequestsAll.propTypes = {
+  costingRequests : costingRequestPropTypes.costingRequests.isRequired,
+};
 
 export default CostingRequestsAll;

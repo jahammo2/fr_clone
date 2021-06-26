@@ -1,5 +1,7 @@
 import React from 'react';
 
+import * as costingRequestPropTypes from 'src/constants/propTypes/costingRequest';
+
 import styles from './styles.module.scss';
 
 function CostingRequestRow(props) {
@@ -13,6 +15,10 @@ function CostingRequestRow(props) {
       <div className={ styles.Value }>{ costingRequest.get('opportunityId') }</div>
     </li>
   );
+}
+
+CostingRequestRow.propTypes = {
+  costingRequest : costingRequestPropTypes.costingRequest.isRequired,
 }
 
 export default CostingRequestRow;
