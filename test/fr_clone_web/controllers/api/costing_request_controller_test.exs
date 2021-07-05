@@ -1,11 +1,16 @@
-defmodule FrCloneWeb.CostingRequestControllerTest do
+defmodule FrCloneWeb.Api.CostingRequestControllerTest do
   use FrCloneWeb.ConnCase
 
   alias FrClone.CostingRequests
 
+  @valid_crli_attrs %{
+    notes: "some notes",
+    units: "mm",
+  }
   @create_attrs %{
     box_file_location: "some box_file_location",
-    opportunity_id: "some opportunity_id"
+    opportunity_id: "some opportunity_id",
+    line_items: [@valid_crli_attrs],
   }
   @update_attrs %{
     box_file_location: "some updated box_file_location",
@@ -32,12 +37,15 @@ defmodule FrCloneWeb.CostingRequestControllerTest do
   end
 
   describe "create costing_request" do
-    test "returns the CR if it is valid", %{conn: conn} do
+    test "returns the CR and its line items if it is valid", %{conn: conn} do
       conn =
         post(conn, Routes.costing_request_path(conn, :create), costing_request: @create_attrs)
 
-      assert %{"id" => id} = json_response(conn, 200)
+      # TODO: elixir this up
+      assert %{"id" => id, "line_items" => line_items} = json_response(conn, 200)
       refute is_nil(id)
+      assert length(line_items) > 0
+      refute is_nil(Enum.at(line_items, 0)["id"])
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -54,6 +62,27 @@ defmodule FrCloneWeb.CostingRequestControllerTest do
                }
              }
     end
+
+    # test "renders errors when data is valid but it is missing a line item", %{conn: conn} do
+    #   attrs = %{
+    #     box_file_location: "some box_file_location",
+    #     opportunity_id: "some opportunity_id"
+    #   }
+    #
+    #   conn =
+    #     post(conn, Routes.costing_request_path(conn, :create), costing_request: attrs)
+    #
+    #   assert json_response(conn, 422) == %{
+    #            "data" => %{
+    #              "code" => "validation_error",
+    #              "errors" => %{
+    #                "box_file_location" => ["can't be blank"],
+    #                "opportunity_id" => ["can't be blank"]
+    #              }
+    #            }
+    #          }
+    # end
+    # test "when units are not correct"
   end
 
   describe "update costing_request" do

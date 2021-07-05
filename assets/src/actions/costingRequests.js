@@ -22,12 +22,12 @@ export function getAll() { // eslint-disable-line import/prefer-default-export
   };
 }
 
-export function create() { // eslint-disable-line import/prefer-default-export
+export function create(params) { // eslint-disable-line import/prefer-default-export
   return dispatch => {
     dispatch({ type : actionTypes.COSTING_REQUEST__CREATE_START });
 
     return costingRequestsService
-      .create()
+      .create(params)
       .then(({ costingRequest }) => {
         dispatch({
           type    : actionTypes.COSTING_REQUEST__CREATE_SUCCESS,

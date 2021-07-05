@@ -24,6 +24,15 @@ function CostingRequestsNew(props) {
       <form onSubmit={ onSubmit }>
         <TextField
           disabled={ isActive }
+          errorMessages={ errors && errors.get('opportunityId') }
+          htmlFor="opportunityId"
+          name="opportunityId"
+          placeholder="Opportunity Id"
+          register={ register }
+        />
+
+        <TextField
+          disabled={ isActive }
           errorMessages={ errors && errors.get('boxFileLocation') }
           htmlFor="boxFileLocation"
           name="boxFileLocation"

@@ -1,4 +1,4 @@
-defmodule FrCloneWeb.CostingRequestView do
+defmodule FrCloneWeb.Api.CostingRequestView do
   use FrCloneWeb, :view
   require Logger
 
@@ -7,7 +7,7 @@ defmodule FrCloneWeb.CostingRequestView do
   def render("index.json", %{costing_requests: costing_requests}) do
     %{
       costing_requests:
-        render_many(costing_requests, FrCloneWeb.CostingRequestView, "costing_request.json")
+        render_many(costing_requests, FrCloneWeb.Api.CostingRequestView, "costing_request.json") # Do I need to add the module?
     }
   end
 
@@ -16,6 +16,7 @@ defmodule FrCloneWeb.CostingRequestView do
       box_file_location: costing_request.box_file_location,
       crli_count: CostingRequests.get_crli_count(costing_request),
       id: costing_request.id,
+      line_items: costing_request.line_items,
       opportunity_id: costing_request.opportunity_id
     }
   end

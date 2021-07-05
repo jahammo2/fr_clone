@@ -50,7 +50,7 @@ module.exports = (env, options) => {
       filename: 'bundle.js',
     },
     plugins: devMode
-      ? [ new Dotenv({ path: './.env', systemvars: true }) ]
+      ? [new Dotenv({ path: './.env', systemvars: true })]
       : [],
     resolve: {
       alias: {

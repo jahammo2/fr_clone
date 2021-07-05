@@ -21,7 +21,7 @@ defmodule FrClone.CostingRequests do
   """
   def list_costing_requests do
     Repo.all(CostingRequest)
-    |> Repo.preload([:costing_request_line_items])
+    |> Repo.preload([:line_items])
   end
 
   @doc """
@@ -56,11 +56,19 @@ defmodule FrClone.CostingRequests do
     costing_request =
       %CostingRequest{}
       |> CostingRequest.changeset(attrs)
+
+    IO.inspect attrs
+  #     |> Ecto.build_assoc(:conversations)
+  # |> Ecto.Changeset.put_assoc(:contact, contact)
+      # |> Ecto.build_assoc(:line_items)
+    costing_request
+      # |> Ecto.Changeset.change()
+      |> Ecto.Changeset.put_assoc(:line_items, attrs[:line_items])
       |> Repo.insert()
 
     case costing_request do
       {:ok, costing_request} ->
-        {:ok, costing_request |> Repo.preload([:costing_request_line_items])}
+        {:ok, costing_request |> Repo.preload([:line_items])}
 
       _ ->
         costing_request
@@ -121,6 +129,6 @@ defmodule FrClone.CostingRequests do
   end
 
   def get_crli_count(%CostingRequest{} = costing_request) do
-    Enum.count(costing_request.costing_request_line_items)
+    Enum.count(costing_request.line_items)
   end
 end

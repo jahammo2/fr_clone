@@ -4,9 +4,9 @@ import handleError from 'src/services/shared/handleError';
 import apiService from './api';
 
 export default {
-  create() {
+  create(params) {
     return apiService
-      .post('/costing_requests')
+      .post('/costing_requests', params)
       .then(({ data }) => camelCaseData(data))
       .catch(handleError);
   },

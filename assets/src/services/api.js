@@ -10,7 +10,7 @@ function init() {
     '';
 
   const api = axios.create({
-    baseURL : `http${API_PROTOCOL_SUFFIX}://${API_DOMAIN}`,
+    baseURL : `http${API_PROTOCOL_SUFFIX}://${API_DOMAIN}/api`,
   });
 
   return api;

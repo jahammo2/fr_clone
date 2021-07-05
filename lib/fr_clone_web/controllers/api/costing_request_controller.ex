@@ -1,4 +1,4 @@
-defmodule FrCloneWeb.CostingRequestController do
+defmodule FrCloneWeb.Api.CostingRequestController do
   use FrCloneWeb, :controller
   require Logger
 

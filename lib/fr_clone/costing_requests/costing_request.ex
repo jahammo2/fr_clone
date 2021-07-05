@@ -8,7 +8,7 @@ defmodule FrClone.CostingRequests.CostingRequest do
     field :box_file_location, :string
     field :opportunity_id, :string
 
-    has_many :costing_request_line_items, CostingRequestLineItem
+    has_many :line_items, CostingRequestLineItem
 
     timestamps()
   end
@@ -18,5 +18,6 @@ defmodule FrClone.CostingRequests.CostingRequest do
     costing_request
     |> cast(attrs, [:box_file_location, :opportunity_id])
     |> validate_required([:box_file_location, :opportunity_id])
+    |> cast_assoc(:line_items, with: &CostingRequestLineItem.changeset/2)
   end
 end

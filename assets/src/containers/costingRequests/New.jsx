@@ -6,10 +6,15 @@ import * as basePropTypes from 'src/constants/propTypes/base';
 import * as costingRequestsActionCreators from 'src/actions/costingRequests';
 
 import CostingRequestsNew from 'src/components/costingRequests/New';
+import snakeCaseParams from 'src/shared/snakeCaseParams';
 
 function FunctionalCostingRequests(props) {
+  const {
+    actions,
+  } = props;
+
   const handleSubmit = useCallback(values => {
-    console.log('calling handleSubmit', values);
+    return actions.costingRequests.create({ costing_request: snakeCaseParams(values) });
   }, []);
 
   return (
